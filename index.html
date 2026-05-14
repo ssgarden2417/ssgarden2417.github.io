@@ -1,338 +1,176 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  
-  <title>ssgarden</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>ssgarden</title><meta name="author" content="Shao Zheng Yuan"><meta name="copyright" content="Shao Zheng Yuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
 <meta property="og:title" content="ssgarden">
 <meta property="og:url" content="http://example.com/index.html">
 <meta property="og:site_name" content="ssgarden">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/butterfly-icon.png">
 <meta property="article:author" content="Shao Zheng Yuan">
 <meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="ssgarden" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+<meta name="twitter:image" content="http://example.com/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "ssgarden",
+  "alternateName": [
+    "example.com"
+  ],
+  "url": "http://example.com/"
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
 
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
   
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
     
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
   
-  
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
-
-<meta name="generator" content="Hexo 8.1.1"></head>
-
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">ssgarden</a>
-      </h1>
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ssgarden',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 8.1.1"></head><body><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">ssgarden</span></a></span><div id="menus"></div></nav><div id="site-info"><h1 id="site-title">ssgarden</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/04/11/%E5%86%99%E5%9C%A824%E5%B2%81%E7%9A%84%E9%97%A8%E5%89%8D/" title="写在24岁的门前">写在24岁的门前</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-04-10T16:00:00.000Z" title="发表于 2026-04-11 00:00:00">2026-04-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a></span></div><div class="content">  最近一直在忙，忙着很多事情。顺其自然却又急迫的搬家、莫名其妙的升职、以及有些令人抗拒的竞争。只得用这些坐地铁的时间，在备忘录上写下这些话，聊以纪念我的23岁。   回望这一岁，比起关注外界社会、世界的变化，我似乎更注目于自身的事情。也有可能是光是关注自己都已精疲力尽了。但外界的变化仍是重要的，包括但不限于我们要在这个时代培养怎样的素养，怎么适应不变的变化等等……这些话还是以后再说。   还是回到自己身上，这一年的主题还是社会化，似乎是早就做好了心理准备，或是在挑选行业时的好运，我社会化的进程倒是意料之外的顺利，虽然在跟别人相处上还是有些欠缺，但我觉得这未尝不是好事。我似乎按照我当时的预期走上了现在这条路（但当时想的更多也只是从家里的环境出来，后面更多的算是顺其自然了）。   此外我还发现了我早就明白的一件事（这句话在这里并没有语病，很多话都是哪怕你能万分共情也不如切身体验的）。很多人对于生活的态度跟我想象一样的麻木，以及很多工作的大部分内容也总是无意义。好像在这个世界上塞了大量的劣质且不好用的润滑剂一样。越是这样便越厌倦无意义的事物，很多事也没有必要去赋予它意义，哪怕我以后大...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/04/03/%E8%A8%80%E5%8F%B6%E4%B9%8B%E5%BA%AD/" title="言叶之庭">言叶之庭</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-04-02T16:00:00.000Z" title="发表于 2026-04-03 00:00:00">2026-04-03</time></span></div><div class="content">目には見て&#x2F;手には取らえぬ&#x2F;月の内の&#x2F;楓のごとき&#x2F;妹をいかにせむ阿妹哟、阿妹哟 近日赶上梅雨季，忙里偷闲抽出时间，和着窗外的雨声又看了一遍《言叶之庭》 彼时新海诚的作品还没有像现在这样商业化，有着导演自己的私心。不过当时的我又过于愚钝，并没有明白许多。但这并不影响它成为我青春期里重要的一部作品。在当时的我眼里，短片里的雨景与配乐、细致到变态的建筑群，有着独特的美感。 于是那雨天、那啤酒配巧克力、甚至连那双包含心意的鞋子都连同配乐组成的小溪一起流进了心海。 现在回过头去看，虽然当时只是对于剧情与现实的联系而感到怀念，只是青春期不带任何想法的模仿，今日也成了我自己的一部分。 “可在连呼吸都会痛的那段日子里，他却只肯埋头收集周围的声音，丝毫不肯相信我的只言片语”，倘若连她的日常都无法参与，连她的痛苦与欢乐都无法分享，还能否继续回到别人的生活中呢。难道一辈子都这样，最重要的话永远不说出口，摆出一副事不关己的样子，永远一个人走下去。 看过之后，随着年龄的增长，当然也看到许多当时没有注意的点。无论是男主作为学生对于成长的期望、对于自身无知的认识，还是女...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/04/02/%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2/" title="春的粉雪">春的粉雪</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-04-02T03:01:40.000Z" title="发表于 2026-04-02 11:01:40">2026-04-02</time></span></div><div class="content">#春的粉雪 这段时间来到扬州，只是曾听闻一位朋友跟我说过扬州的樱花很好看，也刚好到了时节，便选择来到此处.都说“烟花三月下扬州”，第一次怕人太多去看时特地早起，连早饭都没吃七点就到了地方，人确实没多少，或许是因为天刚亮，两边的摊位还没来人，樱花也并未显得那般赏心悦目。 说到樱花我想到的有许多，其中令我印象最深的可能还是《秒五》里的情节，几乎每年都会重温一遍。 “听说是秒速五厘米。”清脆的声音完全不顾自己话题的突兀。“嗯？什么？”幼年却又早熟的桂树仍耐心地听着。“樱花飘落的速度。”明理给出了前面所描绘事物的真面目。接着她趁电车栏杆未落下时跑过街角去到对面，在樱花雨中撑开伞转身“呐，来年也一起去看樱花吧。”可还并未得到回答，电车已驶过他们之间，耳边也是只是车轮与轨道咔哒咔哒的声音。 随后是在冬日二人相聚，中间有着漫长的等待。时间平等又残酷地从两人头上缓慢滑过，无论是车站里冻红的鼻尖还是电车上蜷缩痉挛的胃都不能成为阻止的理由，年轻并未在意这些小事，只在意两颗孤独且炽热的心。他们走在冬天的原野上，新积的雪上只留下两人的脚印，远处一两点民家的灯火遥不可及，或是在这寂静的雪夜中无伤大雅。他们...</div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Shao Zheng Yuan</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/11/%E5%86%99%E5%9C%A824%E5%B2%81%E7%9A%84%E9%97%A8%E5%89%8D/" title="写在24岁的门前">写在24岁的门前</a><time datetime="2026-04-10T16:00:00.000Z" title="发表于 2026-04-11 00:00:00">2026-04-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/03/%E8%A8%80%E5%8F%B6%E4%B9%8B%E5%BA%AD/" title="言叶之庭">言叶之庭</a><time datetime="2026-04-02T16:00:00.000Z" title="发表于 2026-04-03 00:00:00">2026-04-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/02/%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2/" title="春的粉雪">春的粉雪</a><time datetime="2026-04-02T03:01:40.000Z" title="发表于 2026-04-02 11:01:40">2026-04-02</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%94%9F%E6%B4%BB/"><span class="card-category-list-name">生活</span><span class="card-category-list-count">1</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 1.1em; color: #999">随笔</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
       
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        
-          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-
-      <div class="outer">
-        <section id="main">
   
-    <article id="post-写在24岁的门前" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2026/04/11/%E5%86%99%E5%9C%A824%E5%B2%81%E7%9A%84%E9%97%A8%E5%89%8D/" class="article-date">
-  <time class="dt-published" datetime="2026-04-10T16:00:00.000Z" itemprop="datePublished">2026-04-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2026/04/11/%E5%86%99%E5%9C%A824%E5%B2%81%E7%9A%84%E9%97%A8%E5%89%8D/">写在24岁的门前</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
+    <ul class="card-archive-list">
       
-        <p>  最近一直在忙，忙着很多事情。顺其自然却又急迫的搬家、莫名其妙的升职、以及有些令人抗拒的竞争。只得用这些坐地铁的时间，在备忘录上写下这些话，聊以纪念我的23岁。</p>
-<p>  回望这一岁，比起关注外界社会、世界的变化，我似乎更注目于自身的事情。也有可能是光是关注自己都已精疲力尽了。但外界的变化仍是重要的，包括但不限于我们要在这个时代培养怎样的素养，怎么适应不变的变化等等……这些话还是以后再说。</p>
-<p>  还是回到自己身上，这一年的主题还是社会化，似乎是早就做好了心理准备，或是在挑选行业时的好运，我社会化的进程倒是意料之外的顺利，虽然在跟别人相处上还是有些欠缺，但我觉得这未尝不是好事。我似乎按照我当时的预期走上了现在这条路（但当时想的更多也只是从家里的环境出来，后面更多的算是顺其自然了）。</p>
-<p>  此外我还发现了我早就明白的一件事（这句话在这里并没有语病，很多话都是哪怕你能万分共情也不如切身体验的）。很多人对于生活的态度跟我想象一样的麻木，以及很多工作的大部分内容也总是无意义。好像在这个世界上塞了大量的劣质且不好用的润滑剂一样。越是这样便越厌倦无意义的事物，很多事也没有必要去赋予它意义，哪怕我以后大概率会变成理解很多事情并与他们和解的老爷爷我现在也不愿意。这应该是我的特质。</p>
-<p>  时隔一年我好像有些溺于现在的环境，这些年来我对自己的了解愈发清晰，每当我沉浸于某种氛围或是境地中时，我总会觉得不安，想要去到一个新的地方。最开始我会将这种想法归于自己的年轻热血对于改变的渴望，但现在我觉得这更像是我本人的特质，是更之前的经历给予我的。无论是自己仓皇的逃避，亦或是准备充分的决定。</p>
-<p>  不知怎的，我觉得自己似乎只能一直这样奔跑下去，停下来这件事或许就是我人生的终点。总觉得自己很像《阿飞正传》的那只无脚鸟，落地便是死的时候，或许大部分认真对待自己的人都会这么想，特别是在这个时代。一个终极的目标总是令我垂涎欲滴的，尽管现在的我知道或许追求它的过程才是最宝贵的，但我还没有切身领悟这个道理，这么看或许它越理想越好，最好不要实现，最好不那么唾手可得。</p>
-<p>  追求的过程着实有趣，从《围城》到《刀锋》，从《窄门》到《荒原狼》，从芥川龙之介到波德莱尔，从古典主义到印象派……我经常惊叹于我的想法居然能与他们如此之相近，仿佛说出了自己的心声，即使在阅读的激情褪去之后明白没有那么完全契合，但也觉得不可多得。我感受到了悬于高空不可落地的感情，感受到对于永恒不朽者的追求，特别预见性地感受到那近乎幸福的痛苦，或许这才是真正的共鸣。这些作品似乎命中注定的出现在我追求的道路上，令我沉醉。</p>
-<p>  后来我才忽然发现，无论偶然与否，接这些作品本身并产生共鸣的过程，也是我自己的一部分。我写下的文字，我听的歌曲，我观看的作品，我追求的事物都耀眼地反射着我，反射着我们，激昂且沉闷，单一且多彩。不必担心非我，那些相反而又相仿的，矛盾而又自洽的，都是你。<br>  我爱你，你是一个世界。</p>
-<p>  我也会继续成为我自己，了解我自己。继续喜欢着月亮，继续追着花香，做着自己感兴趣的事情，强健身心。</p>
-<p>  那么，是时候推开24岁的门了:）</p>
-
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/04/">
+            <span class="card-archive-list-date">
+              四月 2026
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2026/04/11/%E5%86%99%E5%9C%A824%E5%B2%81%E7%9A%84%E9%97%A8%E5%89%8D/" data-id="cuidDGkVujE7u563RrnGxC7Mq" data-title="写在24岁的门前" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-言叶之庭" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2026/04/03/%E8%A8%80%E5%8F%B6%E4%B9%8B%E5%BA%AD/" class="article-date">
-  <time class="dt-published" datetime="2026-04-02T16:00:00.000Z" itemprop="datePublished">2026-04-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2026/04/03/%E8%A8%80%E5%8F%B6%E4%B9%8B%E5%BA%AD/">言叶之庭</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>目には見て&#x2F;手には取らえぬ&#x2F;月の内の&#x2F;楓のごとき&#x2F;妹をいかにせむ<br>阿妹哟、阿妹哟</p>
-<p>近日赶上梅雨季，忙里偷闲抽出时间，和着窗外的雨声又看了一遍《言叶之庭》</p>
-<p>彼时新海诚的作品还没有像现在这样商业化，有着导演自己的私心。不过当时的我又过于愚钝，并没有明白许多。但这并不影响它成为我青春期里重要的一部作品。在当时的我眼里，短片里的雨景与配乐、细致到变态的建筑群，有着独特的美感。</p>
-<p>于是那雨天、那啤酒配巧克力、甚至连那双包含心意的鞋子都连同配乐组成的小溪一起流进了心海。</p>
-<p>现在回过头去看，虽然当时只是对于剧情与现实的联系而感到怀念，只是青春期不带任何想法的模仿，今日也成了我自己的一部分。</p>
-<p>“可在连呼吸都会痛的那段日子里，他却只肯埋头收集周围的声音，丝毫不肯相信我的只言片语”，倘若连她的日常都无法参与，连她的痛苦与欢乐都无法分享，还能否继续回到别人的生活中呢。难道一辈子都这样，最重要的话永远不说出口，摆出一副事不关己的样子，永远一个人走下去。</p>
-<p>看过之后，随着年龄的增长，当然也看到许多当时没有注意的点。无论是男主作为学生对于成长的期望、对于自身无知的认识，还是女主对自身身份矛盾与工作矛盾的为难（不好，我的教资hhh），现在的我都能在观看过程中感受到吧，切身体会了属于是。</p>
-<p>随后我就发现长大后的我也有雪野一般的困扰，每日出门前预想着该如何迈出脚步，时常很多方面还像孩子一般。当然我不是说这有问题或者不好，这其实非常正常不如说就该如此。人长大的过程都是循序渐进的，虽然我今日写的文字里可能将小时与现在相对割裂开来，但我仍坚信这一点。“27岁的我，相比于15岁的我一点都没有任何长进”这句话现在在我看来也未必如此。</p>
-<p>故事的最后，两人又各自迈向了属于自己的道路，不论是否重逢（最近看完小说发现是HD）。其实我一直知道这部短片重点不在于此，而在于人们如何互相支持着，借由别人的安慰与自己的调整，最后重新对着自己的生活，自己的人生重新迈出那一步。我想，大部分看完的人应该也是如此。</p>
-<p>敲击至此，窗外的雨也大了。今晚就伴着雨声，好好休息。然后在明天早晨，迈出新的一步吧，无论晴天抑或雨天。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2026/04/03/%E8%A8%80%E5%8F%B6%E4%B9%8B%E5%BA%AD/" data-id="cuid-7O8LT9hSh0_uQE_bk_b-" data-title="言叶之庭" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-写在前面" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2026/04/02/%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2/" class="article-date">
-  <time class="dt-published" datetime="2026-04-02T03:01:40.000Z" itemprop="datePublished">2026-04-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2026/04/02/%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2/">春的粉雪</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>#春的粉雪</p>
-<p>这段时间来到扬州，只是曾听闻一位朋友跟我说过扬州的樱花很好看，也刚好到了时节，便选择来到此处.都说“烟花三月下扬州”，第一次怕人太多去看时特地早起，连早饭都没吃七点就到了地方，人确实没多少，或许是因为天刚亮，两边的摊位还没来人，樱花也并未显得那般赏心悦目。</p>
-<p>说到樱花我想到的有许多，其中令我印象最深的可能还是《秒五》里的情节，几乎每年都会重温一遍。</p>
-<p>“听说是秒速五厘米。”清脆的声音完全不顾自己话题的突兀。“嗯？什么？”幼年却又早熟的桂树仍耐心地听着。“樱花飘落的速度。”明理给出了前面所描绘事物的真面目。接着她趁电车栏杆未落下时跑过街角去到对面，在樱花雨中撑开伞转身“呐，来年也一起去看樱花吧。”可还并未得到回答，电车已驶过他们之间，耳边也是只是车轮与轨道咔哒咔哒的声音。</p>
-<p>随后是在冬日二人相聚，中间有着漫长的等待。时间平等又残酷地从两人头上缓慢滑过，无论是车站里冻红的鼻尖还是电车上蜷缩痉挛的胃都不能成为阻止的理由，年轻并未在意这些小事，只在意两颗孤独且炽热的心。他们走在冬天的原野上，新积的雪上只留下两人的脚印，远处一两点民家的灯火遥不可及，或是在这寂静的雪夜中无伤大雅。他们走到樱花树下，虽已至冬季树也光秃秃的，可当明理伸出手接住飘下的雪花时，两人之间对于樱花的默契仍了然于心。“呐，就好像下雪一样啊。”以至于会把心中的樱花再比喻成下雪。</p>
-<p>大抵就是这两个情节，当然两人最后并未在一起，动画中就这样戛然而止了，留给观众一个成年后的两人仍在电车路口的两端隔绝的画面。</p>
-<p>前段时间听hopico，是2024年的情歌企划。季节依然选在了冬天。引入的曲子便是《粉雪》，虽然我之前并未看过《一公升的眼泪》，现在也未曾看过。</p>
-<p>但周扬的回忆却让我带入感十足，他说：“关于这首歌我记得，在冬天五六点的早上骑车上学，耳机里放着这首歌，好像打了鸡血一样。”令我深有同感，我也曾这样做过，只可惜当时并未听歌上学。在冬天的早上出门上学，一个人在尚未点亮的黎明里朝前骑去，并未觉得室外寒冷。当时的我也刚刚去看新海诚的一些作品，想必与年轻的桂树明理心境大差不差吧。</p>
-<p>然后就到了现在。<br>在早上囫囵吞枣地看完樱花后我赶到下一个地点继续游玩，心中却或有或无地想着清晨的樱花。于是在晚上又前往鉴真路，前两天的寒潮在此夜也并未减弱，我也不像小时那般抗寒了。可我仍看到了春的粉雪，风卷起地上的，摇下树上的，白色的、粉色的秒速五厘米的花瓣，在灯的帘子里下着樱花雨——我终于见到了。虽然并未有那时的心境，可我还是看到了。今日从大明寺走出来，也是相同的景色。</p>
-<p>昨天我做了一个梦，一个很久很久以前的梦，在那个梦里面我们还只有十三四岁，那时的我并未真正地看见过樱花，真要看到还是在高中卫生区和武汉。可我的梦中还有雨天、旋转楼梯、阳光的分界线，以及坚定不移地认为日子可以这样下去。就像桂树的那个梦一样。</p>
-<p>可许多年后当我看到了小说中的结局，似乎又有些释然。无论是否为过去的回忆打上动画的滤镜，目前的我，哪怕不那么受冻，不那么胡思乱想，也在这一片春的粉雪中怡然自得。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2026/04/02/%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2/" data-id="cuidHfterETrA0ZqeiZzdcIp_" data-title="春的粉雪" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/04/">四月 2026</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2026/04/11/%E5%86%99%E5%9C%A824%E5%B2%81%E7%9A%84%E9%97%A8%E5%89%8D/">写在24岁的门前</a>
-          </li>
-        
-          <li>
-            <a href="/2026/04/03/%E8%A8%80%E5%8F%B6%E4%B9%8B%E5%BA%AD/">言叶之庭</a>
-          </li>
-        
-          <li>
-            <a href="/2026/04/02/%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2/">春的粉雪</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2026 Shao Zheng Yuan<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.6.4.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
-</body>
-</html>
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">3</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-05-14T14:29:34.276Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Shao Zheng Yuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
